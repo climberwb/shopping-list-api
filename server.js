@@ -13,15 +13,18 @@ Storage.prototype.add = function(name) {
     this.id += 1;
     return item;
 };
-
+Storage.prototype.addItemObject = function(item) {
+    this.items.push(item);
+    return item;
+};
 Storage.prototype.remove = function(item_id){
     var removed_item;
     this.items.forEach(function(item,index,item_arr){
         if(item.id == item_id ){
-           removed_item = item;
-           item_arr.splice(index,1);
-           var num = index;
-           return item;
+          removed_item = item;
+          item_arr.splice(index,1);
+          var num = index;
+          return item;
         }
     });
     return removed_item;
@@ -36,6 +39,11 @@ Storage.prototype.edit = function(item_id,new_item){
            return item;
         }
     });
+    if(!edited_item){
+        console.log(new_item.name);
+        this.addItemObject(new_item);
+        edited_item = new_item;
+    }
     return edited_item;
 }
 
