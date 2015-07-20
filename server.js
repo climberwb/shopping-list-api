@@ -40,7 +40,6 @@ Storage.prototype.edit = function(item_id,new_item){
         }
     });
     if(!edited_item){
-        console.log(new_item.name);
         this.addItemObject(new_item);
         edited_item = new_item;
     }
@@ -96,3 +95,7 @@ app.put('/items/:id',jsonParser, function(req,res){
 
 //app.listen(process.env.PORT || 8080);
 app.listen(process.env.PORT, process.env.IP);
+
+//export to test-server.js
+exports.app = app;
+exports.storage = storage;
